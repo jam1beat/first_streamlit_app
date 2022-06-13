@@ -2,3 +2,7 @@
 import streamlit
 
 streamlit.title("May Parent New healthy Diner")
+streamlit.header("Breakfest Manue")
+streamlit.text("Omega 2 Bluebery Oatmeal")
+streamlit.text("Kale and Spinch Roket Smoothie")
+streamit.text("Hard-Boiled Free-Range Egg")
