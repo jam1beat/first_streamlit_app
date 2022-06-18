@@ -11,7 +11,7 @@ streamlit.text('🥣 Omega 2 Bluebery Oatmeal')
 streamlit.text('🍶 Kale and Spinch Roket Smoothie')
 streamlit.text('🥚 Hard-Boiled Free-Range Egg')
 
-fruit_choice = streamlit.text_input('What fruit would you like information about? ', kiwi)
+fruit_choice = streamlit.text_input('What fruit would you like information about? ', 'kiwi')
 streamlit.write('The user entered ', fruit_choice)  
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+ fruit_choice)
 fruity_normalized = pandas.json_normalize(fruityvice_response.json())
