@@ -6,7 +6,7 @@ import snowflake.connector
 
 
 
-streamlit.title("My Parents New healthy Diner")
+streamlit.title("My Parents New Healthy Diner")
 streamlit.header('Breakfest Favorites')
 streamlit.text('🥣 Omega 2 Bluebery Oatmeal')
 streamlit.text('🍶 Kale and Spinch Roket Smoothie')
