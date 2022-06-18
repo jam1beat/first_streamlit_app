@@ -1,7 +1,7 @@
 
 import streamlit
 import pandas
-import request
+import requests
 
 
 
