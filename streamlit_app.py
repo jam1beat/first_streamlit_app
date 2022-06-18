@@ -17,4 +17,4 @@ my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.co
 fruits_selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index), [1,16])
 fruits_to_show = my_fruit_list.loc[fruits_selected]
 streamlit.dataframe(fruits_to_show)
-streamlit.text(fruityvice_response.jason())
+streamlit.text(fruityvice_response.json())
