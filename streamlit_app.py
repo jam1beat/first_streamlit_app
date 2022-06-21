@@ -13,6 +13,11 @@ streamlit.text('🥣 Omega 2 Bluebery Oatmeal')
 streamlit.text('🍶 Kale and Spinch Roket Smoothie')
 streamlit.text('🥚 Hard-Boiled Free-Range Egg')
 
+def get_fruity_vice_data(this_fruite_choice):
+    fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+ fruit_choice)
+    fruity_normalized = pandas.json_normalize(fruityvice_response.json())
+    return fruity_normalized
+
 my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 fruits_selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index), [1,16])
 fruits_to_show = my_fruit_list.loc[fruits_selected]
@@ -24,8 +29,6 @@ try:
       streamlit.error("Please select a fruit to get information")
     else:
       streamlit.write('The user entered ', fruit_choice)  
-      fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+ fruit_choice)
-      fruity_normalized = pandas.json_normalize(fruityvice_response.json())
       streamlit.dataframe(fruity_normalized)
 except URLError as e:
   streamlit.stop()
