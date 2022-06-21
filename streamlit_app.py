@@ -23,6 +23,12 @@ def get_fruit_load_list():
          my_cur.execute("select * from fruit_load_list")
          return my_cur.fetchall()
 
+def insert_row_into_snowflake(new_fruit):
+    with my_cnx.cursor() as my_cur:
+        my_cur.execute("insert into PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST values ('from streamlit');")
+        return "Thanks for adding " + new_fruit
+    
+    
 my_fruit_list = pandas.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 fruits_selected = streamlit.multiselect("Pick some fruits:", list(my_fruit_list.index), [1,16])
 fruits_to_show = my_fruit_list.loc[fruits_selected]
@@ -39,14 +45,9 @@ try:
 except URLError as e:
   streamlit.stop()
 
+add_my_fruit = streamlit.text_input('What fruit would you like to add?')
 if streamlit.button('Get Fruit Load List'):
     my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
     my_data_rows =  get_fruit_load_list()
     streamlit.header("The FRUIT_LOAD_LIST contains:")
     streamlit.dataframe(my_data_rows)
-
-
-fruit_choice_b = streamlit.text_input('What fruit would you like to add? ', 'kiwi')
-streamlit.write('Thanks for adding: ', fruit_choice_b)
-
-my_cur.execute("insert into PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST values ('from streamlit');")
